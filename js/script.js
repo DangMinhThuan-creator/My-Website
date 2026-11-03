@@ -78,3 +78,50 @@ form.addEventListener('submit', (e) => {
     form.reset();
   }
 });
+/* =========================================================
+   PHẦN 4: JavaScript nâng cao
+   ========================================================= */
+
+// --- LocalStorage: nhớ chế độ sáng/tối ---
+const themeBtn = document.querySelector('#theme-toggle');
+
+// Khi tải trang: đọc trạng thái đã lưu
+if (localStorage.getItem('theme') === 'dark') {
+  document.body.classList.add('dark');
+  themeBtn.textContent = '☀️';
+}
+
+themeBtn.addEventListener('click', () => {
+  const isDark = document.body.classList.toggle('dark');
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');   // lưu lại lựa chọn
+  themeBtn.textContent = isDark ? '☀️' : '🌙';
+});
+
+// --- Fetch + async/await: đọc danh sách dự án ---
+const projectGrid = document.querySelector('#project-grid');
+
+const renderProjects = (list) => {
+  projectGrid.innerHTML = list.map(p => `
+    <article class="card">
+      <h3>${p.ten}</h3>
+      <p class="meta">Công nghệ: ${p.congNghe}</p>
+      <p class="meta">Hoàn thành: ${p.namHoanThanh}</p>
+    </article>
+  `).join('');
+};
+
+async function loadProjects() {
+  try {
+    const res = await fetch('js/data.json');
+    // fetch KHÔNG tự ném lỗi khi 404, nên phải kiểm tra res.ok
+    if (!res.ok) throw new Error(`Lỗi HTTP ${res.status}`);
+    const projects = await res.json();
+    renderProjects(projects);
+  } catch (err) {
+    console.error('Không tải được dữ liệu dự án:', err);   // log ra console
+    projectGrid.innerHTML =
+      '<p>Không thể tải danh sách dự án. Vui lòng thử lại sau.</p>';  // báo người dùng
+  }
+}
+
+loadProjects();
