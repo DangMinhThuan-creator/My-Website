@@ -1,0 +1,178 @@
+// ===== Biến =====
+$primary: #4f46e5;
+$radius: 10px;
+$bp-tablet: 768px;
+$bp-desktop: 1024px;
+
+// ===== Mixin =====
+// Mobile-first: chỉ mở rộng khi màn hình >= breakpoint
+@mixin up($bp) {
+  @media (min-width: $bp) { @content; }
+}
+
+@mixin flex-center($dir: row) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $dir;
+}
+
+// ===== Theme bằng CSS variables (phục vụ dark mode) =====
+:root {
+  --bg: #ffffff;
+  --text: #1f2937;
+  --card: #f3f4f6;
+}
+body.dark {
+  --bg: #111827;
+  --text: #f9fafb;
+  --card: #1f2937;
+}
+
+// ===== Reset + Box Model toàn cục =====
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  transition: background .3s, color .3s;
+}
+
+section {
+  padding: 2.5rem 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
+
+  @include up($bp-tablet) { padding: 4rem 1.5rem; }
+}
+
+h2 { margin-bottom: 1rem; }
+
+// ===== Navbar (Flexbox) - mobile: xếp dọc =====
+.site-header {
+  position: sticky; top: 0; z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+  padding: .75rem 1rem;
+  background: var(--card);
+
+  nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .5rem 1rem;
+    list-style: none;
+
+    a {
+      text-decoration: none;
+      color: var(--text);
+      &:hover { color: $primary; }
+    }
+  }
+
+  #theme-toggle {
+    background: none; border: none; font-size: 1.3rem; cursor: pointer;
+  }
+
+  // Tablet trở lên: xếp ngang
+  @include up($bp-tablet) {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+  }
+}
+
+.logo { font-weight: bold; color: $primary; text-decoration: none; }
+
+// ===== Hero =====
+.hero {
+  @include flex-center(column);
+  min-height: 60vh;
+  text-align: center;
+  h1 span { color: $primary; }
+  @include up($bp-tablet) { min-height: 70vh; }
+}
+
+// ===== About =====
+.about-card {
+  display: flex; flex-direction: column; align-items: center; gap: 1rem;
+  img { border-radius: 50%; max-width: 100%; height: auto; }
+
+  @include up($bp-tablet) { flex-direction: row; }
+}
+
+// ===== Table =====
+.table-wrap { overflow-x: auto; }
+table {
+  width: 100%; border-collapse: collapse;
+  caption { text-align: left; font-weight: bold; padding-bottom: .5rem; }
+  th, td { padding: .6rem; border: 1px solid #9ca3af; text-align: left; }
+  thead { background: $primary; color: #fff; }
+  tbody tr:nth-child(even) { background: var(--card); }
+}
+
+// ===== Skills =====
+#btn-top-skills {
+  margin-bottom: 1rem; padding: .4rem 1rem; cursor: pointer;
+  border: 1px solid $primary; background: transparent; color: var(--text);
+  border-radius: $radius;
+  &.active, &:hover { background: $primary; color: #fff; }
+}
+
+.skill-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+
+  li {
+    background: var(--card); padding: 1rem; border-radius: $radius;
+    .bar { height: 8px; background: #d1d5db; border-radius: 4px; margin-top: .4rem;
+      span { display: block; height: 100%; background: $primary; border-radius: 4px; } }
+  }
+
+  @include up($bp-tablet)  { grid-template-columns: repeat(2, 1fr); }
+  @include up($bp-desktop) { grid-template-columns: repeat(3, 1fr); }
+}
+
+// ===== Projects (Grid) =====
+.project-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+
+  .card {
+    background: var(--card); padding: 1.2rem; border-radius: $radius;
+    transition: transform .2s;
+    &:hover { transform: translateY(-4px); }
+    h3 { color: $primary; }
+    .meta { font-size: .85rem; opacity: .8; }
+  }
+
+  @include up($bp-tablet)  { grid-template-columns: repeat(2, 1fr); }
+  @include up($bp-desktop) { grid-template-columns: repeat(3, 1fr); }
+}
+
+// ===== Form =====
+form {
+  display: flex; flex-direction: column; gap: .4rem;
+  max-width: 500px;
+
+  input, textarea {
+    padding: .6rem; border-radius: 6px; border: 1px solid #9ca3af;
+    font: inherit;
+  }
+  .error { color: #dc2626; min-height: 1.2em; }
+  button[type="submit"] {
+    margin-top: .5rem; padding: .7rem; background: $primary; color: #fff;
+    border: none; border-radius: 6px; cursor: pointer;
+  }
+  #form-status { color: #16a34a; font-weight: bold; }
+}
+
+footer { text-align: center; padding: 1.5rem; background: var(--card); }
