@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio | Đặng Minh Thuận</title>
+  <!-- Liên kết tới file .css đã biên dịch, KHÔNG phải .scss -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a href="#home" class="logo">Đặng Minh Thuận</a>
+    <nav aria-label="Điều hướng chính">
+      <ul>
+        <li><a href="#about">Giới thiệu</a></li>
+        <li><a href="#education">Học tập</a></li>
+        <li><a href="#skills">Kỹ năng</a></li>
+        <li><a href="#projects">Dự án</a></li>
+        <li><a href="#contact">Liên hệ</a></li>
+      </ul>
+    </nav>
+    <button id="theme-toggle" type="button" aria-label="Đổi giao diện sáng/tối">🌙</button>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <h1>Xin chào, mình là <span>Đặng Minh Thuận</span></h1>
+      <p>Sinh viên CNTT | Đam mê Web Development</p>
+    </section>
+
+    <section id="about">
+      <h2>Giới thiệu</h2>
+      <article class="about-card">
+        <!-- Ảnh nhúng dạng SVG data URI để không bị lỗi tải ảnh. Sau này thay bằng ảnh thật trong thư mục images/ -->
+        <img
+          src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><rect width='100%' height='100%' fill='%234f46e5'/><text x='50%' y='55%' font-size='64' fill='white' text-anchor='middle'>DT</text></svg>"
+          alt="Ảnh đại diện của Đặng Minh Thuận" width="160" height="160">
+        <p>Viết 2–3 câu giới thiệu về bản thân, định hướng nghề nghiệp, sở thích...</p>
+      </article>
+    </section>
+
+    <section id="education">
+      <h2>Quá trình học tập</h2>
+      <div class="table-wrap">
+        <table>
+          <caption>Các mốc học tập</caption>
+          <thead>
+            <tr>
+              <th scope="col">Năm</th>
+              <th scope="col">Nơi học</th>
+              <th scope="col">Nội dung</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>2023</td><td>Đại học Gia Định</td><td>Bắt đầu học ngành CNTT</td></tr>
+            <tr><td>2024</td><td>Đại học Gia Định</td><td>Học HTML, CSS, JavaScript</td></tr>
+            <tr><td>2025</td><td>Đại học Gia Định</td><td>Làm các dự án web cá nhân</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Kỹ năng</h2>
+      <button id="btn-top-skills" type="button">Chỉ hiện kỹ năng ≥ 80%</button>
+      <!-- JS sẽ tạo các <li> ở đây, không viết cứng -->
+      <ul id="skill-list" class="skill-list"></ul>
+    </section>
+
+    <section id="projects">
+      <h2>Dự án đã thực hiện</h2>
+      <div id="project-grid" class="project-grid">
+        <p>Đang tải dự án...</p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Liên hệ</h2>
+      <!-- Không dùng novalidate: HTML5 validate chạy trước, JS validate bổ sung -->
+      <form id="contact-form">
+        <label for="name">Họ tên</label>
+        <input type="text" id="name" name="name" required minlength="2" placeholder="Nguyễn Văn A">
+        <small class="error" id="err-name"></small>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required placeholder="ban@example.com">
+        <small class="error" id="err-email"></small>
+
+        <label for="phone">Số điện thoại</label>
+        <input type="tel" id="phone" name="phone" required
+               pattern="0[0-9]{9}" title="Gồm 10 chữ số, bắt đầu bằng 0" placeholder="0901234567">
+        <small class="error" id="err-phone"></small>
+
+        <label for="birthday">Ngày sinh</label>
+        <input type="date" id="birthday" name="birthday" required>
+        <small class="error" id="err-birthday"></small>
+
+        <label for="message">Nội dung</label>
+        <textarea id="message" name="message" rows="4" required minlength="10"></textarea>
+        <small class="error" id="err-message"></small>
+
+        <button type="submit">Gửi</button>
+        <p id="form-status" role="status"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Đặng Minh Thuận</p>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
