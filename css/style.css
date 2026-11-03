@@ -1,0 +1,266 @@
+:root {
+  --bg: #ffffff;
+  --text: #1f2937;
+  --card: #f3f4f6;
+}
+
+body.dark {
+  --bg: #111827;
+  --text: #f9fafb;
+  --card: #1f2937;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  transition: background 0.3s, color 0.3s;
+}
+
+section {
+  padding: 2.5rem 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+@media (min-width: 768px) {
+  section {
+    padding: 4rem 1.5rem;
+  }
+}
+
+h2 {
+  margin-bottom: 1rem;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: var(--card);
+}
+.site-header nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1rem;
+  list-style: none;
+}
+.site-header nav ul a {
+  text-decoration: none;
+  color: var(--text);
+}
+.site-header nav ul a:hover {
+  color: #4f46e5;
+}
+.site-header #theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+@media (min-width: 768px) {
+  .site-header {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+  }
+}
+
+.logo {
+  font-weight: bold;
+  color: #4f46e5;
+  text-decoration: none;
+}
+
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 60vh;
+  text-align: center;
+}
+.hero h1 span {
+  color: #4f46e5;
+}
+@media (min-width: 768px) {
+  .hero {
+    min-height: 70vh;
+  }
+}
+
+.about-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.about-card img {
+  border-radius: 50%;
+  max-width: 100%;
+  height: auto;
+}
+@media (min-width: 768px) {
+  .about-card {
+    flex-direction: row;
+  }
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+table caption {
+  text-align: left;
+  font-weight: bold;
+  padding-bottom: 0.5rem;
+}
+table th, table td {
+  padding: 0.6rem;
+  border: 1px solid #9ca3af;
+  text-align: left;
+}
+table thead {
+  background: #4f46e5;
+  color: #fff;
+}
+table tbody tr:nth-child(even) {
+  background: var(--card);
+}
+
+#btn-top-skills {
+  margin-bottom: 1rem;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  border: 1px solid #4f46e5;
+  background: transparent;
+  color: var(--text);
+  border-radius: 10px;
+}
+#btn-top-skills.active, #btn-top-skills:hover {
+  background: #4f46e5;
+  color: #fff;
+}
+
+.skill-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+.skill-list li {
+  background: var(--card);
+  padding: 1rem;
+  border-radius: 10px;
+}
+.skill-list li .bar {
+  height: 8px;
+  background: #d1d5db;
+  border-radius: 4px;
+  margin-top: 0.4rem;
+}
+.skill-list li .bar span {
+  display: block;
+  height: 100%;
+  background: #4f46e5;
+  border-radius: 4px;
+}
+@media (min-width: 768px) {
+  .skill-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .skill-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+.project-grid .card {
+  background: var(--card);
+  padding: 1.2rem;
+  border-radius: 10px;
+  transition: transform 0.2s;
+}
+.project-grid .card:hover {
+  transform: translateY(-4px);
+}
+.project-grid .card h3 {
+  color: #4f46e5;
+}
+.project-grid .card .meta {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+@media (min-width: 768px) {
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .project-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  max-width: 500px;
+}
+form input, form textarea {
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #9ca3af;
+  font: inherit;
+}
+form .error {
+  color: #dc2626;
+  min-height: 1.2em;
+}
+form button[type=submit] {
+  margin-top: 0.5rem;
+  padding: 0.7rem;
+  background: #4f46e5;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+form #form-status {
+  color: #16a34a;
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  background: var(--card);
+}
+
+/*# sourceMappingURL=style.css.map */
